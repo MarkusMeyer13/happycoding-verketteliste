@@ -9,7 +9,7 @@ namespace VerketteteListe1
 {
     public class VerketteteListe<T>
     {
-        private int anzElement;
+        private int anzElement = 0;
         public int AnzElemente
         {
             get
@@ -24,7 +24,7 @@ namespace VerketteteListe1
         public VerketteteListe()
         {
         }
-     
+
         public VerketteteListe(T first)
         {
             erstesElement = new ListElement<T>(first);
@@ -33,21 +33,23 @@ namespace VerketteteListe1
         public void Add(T wert)
         {
             letztesElement = new ListElement<T>(wert);
+            anzElement++;
+
         }
 
         public T GetElementData(int index)
         {
-            if(index == 0)
+            if (index == 0)
             {
                 return erstesElement.Data;
             }
-            else if (index > 0)
+            else if (index > 0 && index < anzElement - 1)
             {
                 return letztesElement.Data;
             }
             else
             {
-                throw new Exception();
+                throw new Exception($"Ungültiger Index: {index}");
             }
         }
 
